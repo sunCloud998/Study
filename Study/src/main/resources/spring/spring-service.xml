@@ -21,16 +21,16 @@
         <property name="brokerURL" value="tcp://localhost:61616" />
     </bean>
     <!-- 发送消息的目的地（队列） -->
-    <bean id="queueDest"
+    <bean id="destination"
           class="org.apache.activemq.command.ActiveMQQueue">
         <!-- 设置消息队列的名字 -->
         <constructor-arg index="0" value="myQueue" />
     </bean>
     <!-- 配置QueueJms模板 -->
-    <bean id="jmsQueueTemplate"
+    <bean id="jmsTemplate"
           class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="connectionFactory" />
-        <property name="defaultDestination" ref="queueDest" />
+        <property name="defaultDestination" ref="destination" />
         <property name="receiveTimeout" value="10000" />
     </bean>
 
