@@ -2,7 +2,6 @@ package com.sfy.java.activemq.point;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +23,15 @@ public class Producer {
     private String url = ActiveMQConnection.DEFAULT_BROKER_URL;
     private String subject = "TOOL.DEFAULT";
 
-    @Test
+    public static void main(String[] args) {
+        Producer producer = new Producer();
+        producer.producerTest();
+    }
+
+    /**
+     * 在点对点的传输方式中，消息数据被持久化，每条消息都能被消费，没有监
+     * 听 QUEUE 地址也能被消费，数据不会丢失，一对一的发布接受策略，保证数据完整
+     */
     private void producerTest(){
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(user,password,url);
 
