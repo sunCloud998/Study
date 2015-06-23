@@ -7,24 +7,24 @@ import javax.jms.*;
 import java.util.Date;
 
 /**
- * Created by Administrator on 2015/6/21.
+ * Created by Administrator on 2015/6/23.
  */
-public class SubscriberFirst {
+public class SubscriberSecond {
 
-    public static void main(String[] args) throws JMSException {
-        SubscriberFirst subscriberFirst = new SubscriberFirst();
-        subscriberFirst.subscriberFirstTest();
+    public static void main(String[] args) {
+        SubscriberSecond subscriberSecond = new SubscriberSecond();
+        subscriberSecond.subscriberSecondTest();
     }
 
-    public void subscriberFirstTest() throws JMSException {
+    public void subscriberSecondTest(){
         String user = ActiveMQConnection.DEFAULT_USER;
         String password = ActiveMQConnection.DEFAULT_PASSWORD;
         String url = "tcp://localhost:61616";
         String subject = "TOOL.DEFAULT";
 
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(user,password,url);
-
         Connection connection = null;
+
         try {
             connection = connectionFactory.createConnection();
             connection.start();
@@ -35,9 +35,8 @@ public class SubscriberFirst {
                 @Override
                 public void onMessage(Message message) {
                     MapMessage mapMessage = (MapMessage) message;
-
                     try {
-                        System.err.println("--订阅者1收到消息："+new Date(mapMessage.getLong("count")));
+                        System.err.println("--接受者2收到消息："+ new Date(mapMessage.getLong("count")));
                     } catch (JMSException e) {
                         e.printStackTrace();
                     }
@@ -45,11 +44,15 @@ public class SubscriberFirst {
             });
         } catch (JMSException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             if(connection != null){
-                connection.close();
+                try {
+                    connection.close();
+                } catch (JMSException e) {
+                    e.printStackTrace();
+                }
             }
         }
-    }
 
+    }
 }
