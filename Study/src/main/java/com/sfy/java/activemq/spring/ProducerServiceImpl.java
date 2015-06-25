@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * Created by Administrator on 2015/6/23.
  */
-@Service("producerService")
+@Service
 public class ProducerServiceImpl implements ProducerService {
 
     @Autowired

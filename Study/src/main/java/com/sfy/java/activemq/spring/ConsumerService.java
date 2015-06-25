@@ -5,6 +5,6 @@ package com.sfy.java.activemq.spring;
  */
 public interface ConsumerService {
 
-    public void receive();
+    void receive();
 
 }

@@ -3,8 +3,6 @@ package com.sfy.java.activemq.spring;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
-
-import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.MapMessage;
 import java.util.Date;
@@ -12,13 +10,11 @@ import java.util.Date;
 /**
  * Created by Administrator on 2015/6/23.
  */
-@Service("consumerService")
+@Service
 public class ConsumerServiceImpl implements ConsumerService {
 
     @Autowired
     private JmsTemplate jmsTemplate;
-    @Autowired
-    private Destination destination;
 
     @Override
     public void receive() {
