@@ -3,9 +3,7 @@ package com.sfy.util.excel;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -31,6 +29,65 @@ public class WriteExcel {
 	private CellStyle contentCellStyle; // 内容的样式
 	private CellStyle numberCellStyle; // 保留两位小数的样式
 
+    ///////////////////////////////////////////////////////////////////////////////
+	public static void main(String[] args) {
+		WriteExcel writeExcel = new WriteExcel();
+		List<SheetBean> sheetBeanList = new ArrayList<SheetBean>();
+		SheetBean sheetBean = new SheetBean();
+		sheetBean.setSheetName("导出数据");
+		sheetBean.setTitle(null);
+		sheetBean.setRownum(0);
+		sheetBean.setMergeColCount(1);
+		sheetBean.setHeadNames(writeExcel.buildHeadNames());
+		sheetBean.setTableContents(writeExcel.buildTableData());
+		sheetBeanList.add(sheetBean);
+		ExcelBean excelBean = new ExcelBean();
+		excelBean.setPath("创建工作簿.xls");
+		excelBean.setSheets(sheetBeanList);
+
+		writeExcel.write(excelBean);
+	}
+
+	public Map<Integer,String> buildHeadNames(){
+		Map<Integer,String> map = new HashMap<>();
+		map.put(0, "学号");
+		map.put(1, "姓名");
+		map.put(2, "年龄");
+		map.put(3, "性别");
+		map.put(4, "出生日期");
+		return map;
+	}
+
+	public List<Map<String,Object>> buildTableData(){
+		List<Map<String,Object>> list = new ArrayList<>();
+		Map<String,Object> map_1 = new HashMap<>();
+		map_1.put("学号", "100000001");
+		map_1.put("姓名", "张三");
+		map_1.put("年龄", "24");
+		map_1.put("性别", "男");
+		map_1.put("出生日期", "1990-09-12");
+
+		Map<String,Object> map_2 = new HashMap<>();
+		map_2.put("学号", "200000002");
+		map_2.put("姓名", "李四");
+		map_2.put("年龄", "24");
+		map_2.put("性别", "男");
+		map_2.put("出生日期", "1990-09-12");
+
+		Map<String,Object> map_3 = new HashMap<>();
+		map_3.put("学号", "300000003");
+		map_3.put("姓名", "王五");
+		map_3.put("年龄", "24");
+		map_3.put("性别", "男");
+		map_3.put("出生日期", "1990-09-12");
+
+		list.add(map_1);
+		list.add(map_2);
+		list.add(map_3);
+		return list;
+	}
+///////////////////////////////////////////////////////////////////
+
 	/**
 	 * @功能: 写excel
 	 * flight
@@ -39,7 +96,7 @@ public class WriteExcel {
 	 * @return
 	 */
 	public boolean write(ExcelBean excelBean) {
-		if (excelBean.getPath().endsWith("xlsx")) {
+		if (excelBean.getPath().endsWith("a.xlsx")) {
 			// 2007以上
 			workbook = new SXSSFWorkbook(200);
 		} else {
