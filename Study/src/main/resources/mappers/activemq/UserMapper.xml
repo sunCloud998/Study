@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.activemq.dao.UserDao">
+    <!-- Result Map -->
+    <resultMap id="BaseResultMap" type="com.activemq.model.User">
+        <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+    </resultMap>
+
+    <!-- e_goods_attr_name table all fields -->
+    <sql id="Base_Column_List">
+        id,username,password
+    </sql>
+
+
+    <!-- 必须方法 start -->
+
+
+    <select id="getUser" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        <where>
+            <if test="username != null">username = #{
+username
+}
+            </if>
+            <if test="password != null">and password = #{
+password
+}
+            </if>
+        </where>
+    </select>
+    <select id="getUserById" resultMap="BaseResultMap" parameterType="integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{
+id
+}
+    </select>
+
+
+    <select id="getOtherUser" resultMap="BaseResultMap" parameterType="integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+
+        where id not in (#{
+id
+})
+
+    </select>
+
+
+</mapper>
