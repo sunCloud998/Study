@@ -38,12 +38,23 @@ public class ExcelReadAndWrite {
         FileOutputStream fileOutputStream = new FileOutputStream(fileName);
         //创建单元格
         HSSFSheet sheet = workbook.createSheet("第一个Sheet页");
+        sheet.setColumnWidth((short)0,5*256);
+        sheet.setColumnWidth((short)1,15*256);
+        sheet.setColumnWidth((short)2,10*256);
+        sheet.setColumnWidth((short)3,10*256);
+        sheet.setColumnWidth((short)4,10*256);
+        sheet.setColumnWidth((short)5,30*256);
+        sheet.setColumnWidth((short)6,15*256);
+        sheet.setColumnWidth((short)7,15*256);
+        sheet.setColumnWidth((short)8,15*256);
+        sheet.setColumnWidth((short)9,20*256);
         sheet.addMergedRegion(new Region(0,(short)0,0,(short)12));
         HSSFRow row = sheet.createRow(0);
         row.setHeight((short) 1000);
 
         //设置表头
         sheet.addMergedRegion(new Region(1,(short)3,1,(short)4));
+
         row = sheet.createRow(1);
         row.createCell((short) 1).setCellValue(40);
         row.createCell((short) 3).setCellValue("UTOUR-BJ-W7-09072015-S-TG-TL0107");

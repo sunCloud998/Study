@@ -17,10 +17,13 @@
 	<context:annotation-config/>
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 
+	<!-- 指定Sping组件扫描的基本包路径 -->
 	<context:component-scan base-package="com.sfy">
+		<!-- 这里只扫描Controller，不可重复加载Service -->
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 
+	<!-- 启用MVC注解 -->
 	<mvc:annotation-driven>
         <mvc:argument-resolvers>
             <!--配置参数解析器-->
@@ -47,9 +50,10 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
-	<mvc:interceptors>
-        <!--配置拦截器-->
-	</mvc:interceptors>
+	<!--配置拦截器-->
+	<!--<mvc:interceptors>-->
+        <!-- -->
+	<!--</mvc:interceptors>-->
 
 	<!--配置异常解析-->
 
