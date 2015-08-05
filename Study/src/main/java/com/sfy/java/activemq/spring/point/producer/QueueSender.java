@@ -1,4 +1,4 @@
-package com.sfy.java.activemq.point.producer;
+package com.sfy.java.activemq.spring.point.producer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,6 +11,7 @@ import javax.jms.Message;
 import javax.jms.Session;
 
 /**
+ * 使用和spring集成的方式创建点对点消息发送者
  * @Description: QueueSender.java
  * @Author: sunfayun
  * @Date: 2015/08/05

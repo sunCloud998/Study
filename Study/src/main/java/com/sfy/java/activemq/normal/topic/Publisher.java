@@ -1,4 +1,4 @@
-package com.sfy.java.activemq.topic;
+package com.sfy.java.activemq.normal.topic;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -7,7 +7,7 @@ import javax.jms.*;
 import java.util.Date;
 
 /**
- * Created by Administrator on 2015/6/21.
+ * 使用普通的方式发送消息，不和spring集成
  */
 public class Publisher {
 

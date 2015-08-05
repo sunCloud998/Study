@@ -1,6 +1,6 @@
-package com.sfy.java.activemq.point.controller;
+package com.sfy.java.activemq.spring.point.controller;
 
-import com.sfy.java.activemq.point.producer.QueueSender;
+import com.sfy.java.activemq.spring.point.producer.QueueSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

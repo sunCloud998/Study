@@ -1,4 +1,4 @@
-package com.sfy.java.activemq.topic;
+package com.sfy.java.activemq.normal.topic;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -7,24 +7,24 @@ import javax.jms.*;
 import java.util.Date;
 
 /**
- * Created by Administrator on 2015/6/23.
+ * 使用普通的方式发送消息，不和spring集成
  */
-public class SubscriberSecond {
+public class SubscriberFirst {
 
-    public static void main(String[] args) {
-        SubscriberSecond subscriberSecond = new SubscriberSecond();
-        subscriberSecond.subscriberSecondTest();
+    public static void main(String[] args) throws JMSException {
+        SubscriberFirst subscriberFirst = new SubscriberFirst();
+        subscriberFirst.subscriberFirstTest();
     }
 
-    public void subscriberSecondTest(){
+    public void subscriberFirstTest() throws JMSException {
         String user = ActiveMQConnection.DEFAULT_USER;
         String password = ActiveMQConnection.DEFAULT_PASSWORD;
         String url = "tcp://localhost:61616";
         String subject = "TOOL.DEFAULT";
 
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(user,password,url);
-        Connection connection = null;
 
+        Connection connection = null;
         try {
             connection = connectionFactory.createConnection();
             connection.start();
@@ -35,8 +35,9 @@ public class SubscriberSecond {
                 @Override
                 public void onMessage(Message message) {
                     MapMessage mapMessage = (MapMessage) message;
+
                     try {
-                        System.err.println("--接受者2收到消息："+ new Date(mapMessage.getLong("count")));
+                        System.err.println("--订阅者1收到消息："+new Date(mapMessage.getLong("count")));
                     } catch (JMSException e) {
                         e.printStackTrace();
                     }
@@ -44,15 +45,11 @@ public class SubscriberSecond {
             });
         } catch (JMSException e) {
             e.printStackTrace();
-        } finally {
+        }finally {
             if(connection != null){
-                try {
-                    connection.close();
-                } catch (JMSException e) {
-                    e.printStackTrace();
-                }
+                connection.close();
             }
         }
-
     }
+
 }
