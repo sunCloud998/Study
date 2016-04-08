@@ -1,4 +1,4 @@
-package com.sfy.util.common;
+package com.sfy.util.regx;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -60,5 +60,39 @@ public class UserPrivacys {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches() && email.length() < MAX_EMAIL_LENGTH;
+    }
+
+    /**
+     * 将字符串转换成html 语义的字符串
+     * @param str
+     * @return
+     */
+    public static String convert2HtmlSemantic(String str) {
+        if (str == null) {
+            return null;
+        }
+        str = str.replaceAll("<", "&lt;");
+        str = str.replaceAll(">", "&gt;");
+        str = str.replaceAll("\"", "&quot;");
+        str = str.replaceAll("'", "&#39;");
+        return str;
+    }
+
+    /**
+     * 过滤html标签
+     * @param input
+     * @return
+     */
+    public static String escapeHtml(String input){
+        Pattern html_tag_pattern = Pattern.compile("<(?!img)[^>]*>");
+        Matcher matcher = html_tag_pattern.matcher(input);
+        StringBuffer sb = new StringBuffer();
+        boolean result1 = matcher.find();
+        while (result1) {
+            matcher.appendReplacement(sb, "");
+            result1 = matcher.find();
+        }
+        matcher.appendTail(sb);
+        return sb.toString();
     }
 }

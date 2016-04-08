@@ -122,7 +122,7 @@ public class PropertiesUtils {
 
 	public static void main(String[] args) {
 		System.out.println(PropertiesUtils.getProperty("/jdbc.properties", "oracle.driver"));
-		PropertiesUtils.setProperty("/email.properties", "name", "yangc");
+		PropertiesUtils.setProperty("/email.properties", "name", "test");
 	}
 
 }
