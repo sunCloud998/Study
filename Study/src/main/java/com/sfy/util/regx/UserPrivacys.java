@@ -1,5 +1,6 @@
 package com.sfy.util.regx;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.regex.Matcher;
@@ -93,6 +94,23 @@ public class UserPrivacys {
             result1 = matcher.find();
         }
         matcher.appendTail(sb);
+        return sb.toString();
+    }
+
+    /**
+     * 转义html标签
+     * @param input
+     * @return
+     */
+    public static String convertHTML(String input) {
+        Pattern coding_pattern = Pattern.compile("[\"'<>%&\\(\\);\\+-\\[\\]\\{\\}]");
+        if (input == null) return "";
+        StringBuffer sb = new StringBuffer();
+        Matcher m = coding_pattern.matcher(input);
+        while(m.find()) {
+            m.appendReplacement(sb, StringEscapeUtils.escapeHtml4(m.group()));
+        }
+        m.appendTail(sb);
         return sb.toString();
     }
 }
