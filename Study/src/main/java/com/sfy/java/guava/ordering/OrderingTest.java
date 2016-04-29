@@ -1,4 +1,4 @@
-package com.sfy.java.guava;
+package com.sfy.java.guava.ordering;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;

@@ -1,4 +1,4 @@
-package com.sfy.java.guava;
+package com.sfy.java.guava.optional;
 
 import com.google.common.base.Optional;
 import org.junit.Test;
@@ -7,12 +7,12 @@ import java.util.Set;
 
 /**
  * Optional功能:使用和避免null
- * @Description: OptionalTest.java
+ * @Description: OptionalMethodTest.java
  * @User: sunfayun
  * @Date: 2016/03/16
  * @Version: 1.0
  */
-public class OptionalTest {
+public class OptionalMethodTest {
 
     @Test
     public void optionalMethodTest(){

@@ -15,11 +15,22 @@ import java.io.Serializable;
 @Data   @ToString
 public class Student implements Serializable {
 
+    private Integer id;
     private String name;
     private String password;
     private Integer age;
     private String email;
     private String no;
+
+    public Student(){}
+
+    public Student(Integer id,String name,Integer age,String email){
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.email = email;
+    }
+
 
     /**
      * 比较student的全部属性信息

@@ -1,4 +1,4 @@
-package com.sfy.java.guava;
+package com.sfy.java.guava.objects;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
