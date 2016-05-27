@@ -1,4 +1,4 @@
-package com.sfy.java.guava;
+package com.sfy.java.guava.cache;
 
 import com.google.common.cache.*;
 import com.sfy.object.Student;
@@ -38,6 +38,7 @@ public class CacheTest {
                         new CacheLoader<String, Student>() {
                             @Override
                             public Student load(String key) throws Exception {
+                                //load from DB
                                 System.err.println("load Student:" + key);
                                 Student student = new Student();
                                 student.setNo(key);
