@@ -1,5 +1,6 @@
 package com.sfy.other;
 
+import com.google.common.base.CharMatcher;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.Service;
@@ -105,6 +106,15 @@ public class ArrayListTest {
             }
         }
         System.err.println("==>"+list);
+    }
+
+    @Test
+    public void splitterTest(){
+        String test = "a |  b | c";
+        String newString = CharMatcher.WHITESPACE.removeFrom(test);
+        System.err.println("===>"+newString);
+        List<String> list = Splitter.on("|").splitToList(test);
+        System.err.println(list);
     }
 
     @Test
