@@ -40,4 +40,15 @@ public class NullArrayListLoopTest {
             System.err.println("====>"+sb.deleteCharAt(sb.lastIndexOf(",")));
     }
 
+    @Test
+    public void stringBuilderDeleteTest(){
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<10;i++){
+            sb.append(i).append(",");
+        }
+        System.err.println(">>>"+sb.toString());
+        sb = sb.deleteCharAt(sb.lastIndexOf(","));
+        System.err.println("==>"+sb.toString());
+    }
+
 }

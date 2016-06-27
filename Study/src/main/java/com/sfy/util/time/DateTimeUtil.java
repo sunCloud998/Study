@@ -585,4 +585,20 @@ public class DateTimeUtil {
         return System.currentTimeMillis();
     }
 
+    /**
+     * 返回当前日期,格式:yyyy-MM-dd
+     * @return
+     */
+    public static String currentDateString() {
+        return formatTime(new Date(),DATE_PATTERN);
+    }
+
+    /**
+     * 返回当前日期,格式:yyyy-MM-dd HH:mm:ss
+     * @return
+     */
+    public static String currentTimeString() {
+        return formatTime(currentTimestamp(),DATETIME_PATTERN);
+    }
+
 }
