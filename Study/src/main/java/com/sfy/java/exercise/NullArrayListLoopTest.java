@@ -1,9 +1,11 @@
 package com.sfy.java.exercise;
 
 import com.google.common.collect.Lists;
+import com.sfy.util.time.DateTimeUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -49,6 +51,30 @@ public class NullArrayListLoopTest {
         System.err.println(">>>"+sb.toString());
         sb = sb.deleteCharAt(sb.lastIndexOf(","));
         System.err.println("==>"+sb.toString());
+    }
+
+    @Test
+    public void formatDateTimeTest(){
+        String dateTime = "2017-02-28 00:00:00.000";//DateTimeUtil.currentTimeString();
+        String newDateTime = this.formatDateTime(dateTime);
+        System.err.println("====>"+newDateTime);
+    }
+
+    public String formatDateTime(String dateTime){
+        if(StringUtils.isBlank(dateTime)){
+            return null;
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        try {
+            String timeInfo = sdf.format(sdf.parse(dateTime));
+            if(StringUtils.isNotBlank(timeInfo)){
+                return timeInfo.replaceAll("-","/");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return null;
     }
 
 }
