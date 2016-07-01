@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -75,6 +76,43 @@ public class NullArrayListLoopTest {
             return null;
         }
         return null;
+    }
+
+    @Test
+    public void getPageDataTest(){
+        String[] stringArray = new String[888];
+        for (int i = 0; i <888 ; i++) {
+            stringArray[i] = String.valueOf(i);
+        }
+
+        int pageSize = 100;
+        int pageNumber = (stringArray.length - 1)/pageSize +1;
+        for (int i = 0; i <pageNumber ; i++) {
+            int size;
+            if(i*pageSize+pageSize > stringArray.length){
+                size = stringArray.length;
+            }else {
+                size = i*pageSize+pageSize;
+            }
+            String string = "";
+            for(int j=i*pageSize;j<size;j++){
+                string = string + stringArray[j]+",";
+            }
+            System.err.println("==>"+string.substring(0,string.length()-1));
+        }
+    }
+
+    @Test
+    public void arraySubTest(){
+        String[] stringArray = new String[30];
+        for (int i = 0; i < 30; i++) {
+            stringArray[i] = String.valueOf(i);
+        }
+        System.out.println(Arrays.asList(stringArray).toString());
+
+        String[] stringTempArray = Arrays.copyOf(stringArray,20);
+        System.out.println("=========================");
+        System.out.println(Arrays.asList(stringTempArray).toString());
     }
 
 }
