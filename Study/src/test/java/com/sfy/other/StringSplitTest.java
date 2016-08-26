@@ -5,11 +5,14 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import lombok.Data;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -98,6 +101,54 @@ public class StringSplitTest {
         Gson gson = new Gson();
         System.err.println("==>"+gson.toJson(mapList));
         return mapList;
+    }
+
+    @Test
+    public void splitStringTest_01(){
+        String str = "|||||||||||";
+        String[] arr = str.split("\\|");
+        System.err.println("===>"+arr);
+    }
+
+    @Test
+    public void collectionSortTest(){
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            List<Student> studentList = Lists.newArrayList();
+            studentList.add(new Student("aa",sdf.parse("2012-12-11")));
+            studentList.add(new Student("bb",sdf.parse("2013-11-11")));
+            studentList.add(new Student("cc",sdf.parse("2011-01-11")));
+            studentList.add(new Student("dd",sdf.parse("2012-02-11")));
+            studentList.add(new Student("ee",sdf.parse("2002-12-11")));
+            studentList.add(new Student("ff",sdf.parse("2001-12-11")));
+            studentList.add(new Student("gg",sdf.parse("2000-12-11")));
+
+            Collections.sort(studentList, new Comparator<Student>() {
+                @Override
+                public int compare(Student o1, Student o2) {
+                    return o2.getBirthday().compareTo(o1.getBirthday());
+                }
+            });
+
+            for(Student student : studentList){
+                System.err.println(student.getName()+":"+sdf.format(student.getBirthday()));
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Data
+    public static class Student{
+        private String name;
+        private Date birthday;
+
+        public Student(){}
+
+        public Student(String name,Date birthday){
+            this.name = name;
+            this.birthday = birthday;
+        }
     }
 
 }
