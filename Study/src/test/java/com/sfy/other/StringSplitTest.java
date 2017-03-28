@@ -4,7 +4,6 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import lombok.Data;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
@@ -149,6 +148,36 @@ public class StringSplitTest {
             this.name = name;
             this.birthday = birthday;
         }
+    }
+
+    @Test
+    public void splitDomainTest(){
+        String url = "http://qb2c_szyfl.dujia.qunar.com/pd/shophome_%E5%8C%97%E4%BA%AC?subWrapperName=%E6%90%BA%E7%A8%8B%E5%AD%90%E5%BA%97%E9%93%BA";
+        url = url.replace("http://","");
+        System.err.println(url);
+        String domain = url.substring(0,url.indexOf("/"));
+        System.err.println("domain:"+domain);
+        String params = url.substring(url.indexOf("?")+1,url.length());
+        String[] param = params.split("&");
+        for(String str : param){
+            if(str.contains("subWrapperName")){
+                System.err.println("==>"+str);
+                break;
+            }
+        }
+    }
+
+    @Test
+    public void getNumberTest(){
+        long num = 310;
+        double temp = num/100;
+        System.err.println("=>"+Math.ceil((double)num/100));
+    }
+
+    @Test
+    public void getDateStringTest(){
+        java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+        System.err.println("==>"+date.toString());
     }
 
 }

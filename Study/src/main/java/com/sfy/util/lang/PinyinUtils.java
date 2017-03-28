@@ -72,8 +72,8 @@ public class PinyinUtils {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(PinyinUtils.getPinyin("杨晨"));
-		System.out.println(PinyinUtils.getPinyinHead("杨晨"));
+		System.out.println(PinyinUtils.getPinyin("测试"));
+		System.out.println(PinyinUtils.getPinyinHead("呵呵"));
 	}
 
 }
