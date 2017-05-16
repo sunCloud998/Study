@@ -1,11 +1,16 @@
 package com.sfy.other;
 
+import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
+import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.IntPredicate;
+import java.util.stream.IntStream;
 
 /**
  * @Description: ModTest.java
@@ -82,6 +87,25 @@ public class ModTest {
             }
         }
         System.err.println(targetList);
+    }
+
+    @Test
+    public void rangeTest(){
+//        IntStream.range(0,10).forEach(index ->{
+//            System.err.println("==>"+index);
+//        });
+
+        IntStream.range(0,10).filter(value -> value>5).forEach(index -> System.err.println("=>"+index));
+    }
+
+    @Test
+    public void encodeTest(){
+        String str = "http://l-dumper2.vc.dev.cn0.qunar.com:8690/qchat/effective_comm?customer=zhu886&user=zxfedlm6815&start_time=2017-05-16 16:30:11&dur_time=15";
+        try {
+            System.err.println("==>"+ URLEncoder.encode("2017-05-16 16:30:11", Charsets.UTF_8.name()));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 
 }
