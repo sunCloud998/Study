@@ -17,10 +17,7 @@ import org.junit.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -186,6 +183,19 @@ public class ArrayListTest {
         }
 
         System.err.println("--->"+targetNumberList);
+    }
+
+    @Test
+    public void setToListTest(){
+        Set<String> set = new HashSet<String>();
+        set.add("1");
+        set.add("2");
+        set.add("3");
+        List<Integer> list = new ArrayList(set);
+        for(Integer a : list){
+            System.err.println("==>"+a);
+        }
+        //System.err.println("==>"+list);
     }
 
     @Test
