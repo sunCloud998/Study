@@ -1,11 +1,17 @@
 package com.sfy.java.guava;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 import lombok.Data;
 import lombok.ToString;
 import org.junit.Test;
 
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -57,6 +63,66 @@ public class ListSortTest {
     public static class User{
         private String name;
         private Integer age;
+    }
+
+    @Test
+    public void testFilter(){
+        List<String> newList = new ArrayList(){{
+           add("a");
+            add("b");
+            add("c");
+            add("d");
+            add("e");
+            add("f");
+            add("g");
+        }};
+
+        List<String> oldList = new ArrayList(){{
+            add("a");
+            add("s");
+        }};
+
+        Collection<String> target = Collections2.filter(oldList, new Predicate<String>() {
+            @Override
+            public boolean apply(@Nullable String s) {
+                return !newList.contains(s);
+            }
+        });
+        List<String> list = Lists.newArrayList(target);
+        System.err.println("==>"+list.toString());
+    }
+
+    @Test
+    public void testCollection(){
+        List<Integer> list = Lists.newArrayList();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        for (int i=0;i<1000;i++){
+            Collection<Integer> collection = Collections2.filter(list, new Predicate<Integer>() {
+                @Override
+                public boolean apply(@Nullable Integer input) {
+                    return input != 3;
+                }
+            });
+            List<Integer> newList = Lists.newArrayList(collection);
+            System.err.println("==>"+newList);
+        }
+
+    }
+
+    public static enum TestEnum{
+
+        A(1,"a"),;
+
+        private Integer type;
+        private String name;
+
+        TestEnum(Integer type,String name){
+            this.type = type;
+            this.name = name;
+        }
     }
 
 }

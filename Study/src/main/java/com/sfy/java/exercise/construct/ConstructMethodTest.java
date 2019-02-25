@@ -22,6 +22,10 @@ public class ConstructMethodTest implements InitializingBean {
         System.err.println("默认的构造方法开始执行。。。。。");
     }
 
+    static {
+        System.err.println("static方法开始执行。。。。。");
+    }
+
     public ConstructMethodTest(){
         System.err.println("空的构造方法开始执行。。。。");
     }

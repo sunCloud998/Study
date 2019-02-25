@@ -1,15 +1,20 @@
 package com.sfy.other;
 
 import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
+import com.sfy.util.json.JsonMapper;
 import lombok.Data;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 import org.junit.Test;
 
+import javax.validation.constraints.NotNull;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -178,6 +183,67 @@ public class StringSplitTest {
     public void getDateStringTest(){
         java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
         System.err.println("==>"+date.toString());
+    }
+
+    @Test
+    public void test01(){
+        Map<String,String> map = Maps.newHashMap();
+        map.put("gamePlayTitle","上海+杭州+黄山+乌镇");
+        map.put("destinationInfo","26970.27055@中国.上海,26970.26972.27100@中国.浙江.杭州,26970.27137.27443@中国.安徽.黄山");
+        map.put("showInfo","26970.27055@中国.上海");
+        map.put("status","1");
+        String jsonData = JsonMapper.mapString(map);
+        GamePlayConfigParam param = JsonMapper.mapObject(jsonData,GamePlayConfigParam.class);
+        System.err.println(JsonMapper.mapString(map));
+    }
+
+    @Data
+    public static class GamePlayConfigParam {
+
+        private String id;
+        @NotBlank(message = "玩法名称不能为空")
+        @Length(min = 1, max = 16, message = "玩法名称长度不合法")
+        private String gamePlayTitle;
+        @NotBlank(message = "包含目的地不能为空")
+        private String destinationInfo;
+        @NotBlank(message = "展示板块不能为空")
+        private String showInfo;
+        @NotNull(message = "状态不能为空")
+        private Integer status = 1;//状态，默认：有效
+
+    }
+
+    @Test
+    public void test02(){
+        String test="东南亚=泰国$清迈@普吉岛,柬埔寨,印度尼西亚,越南,斯里兰卡,马来西亚,新加坡,尼泊尔,印度|日韩=日本|欧洲=德国,法国,意大利,瑞士,英国,爱尔兰,俄罗斯,西班牙,葡萄牙,匈牙利,捷克,丹麦,芬兰,土耳其,奥地利,冰岛,荷兰,挪威,卢森堡,爱沙尼亚,希腊,不丹,比利时,瑞典,波兰,斯洛伐克|美洲=美国,加拿大,墨西哥,哥斯达黎加,巴拿马,巴西,阿根廷,智利,古巴,乌拉圭|澳新=澳大利亚,新西兰|中东非=阿联酋,埃及,土耳其,肯尼亚,南非,坦桑尼亚,伊朗,突尼斯,摩洛哥,以色列,约旦|国内=云南$大理@丽江,海南,四川,福建,广西,北京,华东,山东,安徽,东北,山西,湖南,湖北,江西,西北,贵州,西藏,广东,重庆,新疆,内蒙古,河北,河南天津,上海,宁夏,辽宁,吉林,黑龙江,江苏,浙江,陕西,甘肃,青海|港澳台=香港,澳门,台湾|海岛=普吉岛,苏梅岛,巴厘岛,马尔代夫,塞班,沙巴,长滩,冲绳,济州,岘港,芽庄,毛里求斯,塞舌尔,夏威夷,关岛,大溪地,斐济,帕劳";
+        List<Map<String,Map<String,List<String>>>> list = Lists.newArrayList();
+//        List<String> test01 = Splitter.on("|").splitToList(test);
+//        for(String str : test01){
+//            List<String> list01 = Splitter.on("=").splitToList(str);
+//            for(String str01 : list01){
+//
+//                List<String> list02 = Splitter.on("$").splitToList(str);
+//
+//            }
+//        }
+
+
+        Splitter.on("|").splitToList(test).forEach(stringList -> {
+            List<String> list01 = Splitter.on("=").splitToList(stringList);
+            Map<String,Map<String,List<String>>> map = Maps.newHashMap();
+            Map<String,List<String>> listMap = Maps.newHashMap();
+            Splitter.on(",").splitToList(list01.get(1)).forEach(str -> {
+                if(str.contains("$")) {
+                    List<String> list02 = Splitter.on("$").splitToList(str);
+                    listMap.put(list02.get(0),Splitter.on("@").splitToList(list02.get(1)));
+                }else {
+                    listMap.put(str, ImmutableList.of());
+                }
+            });
+            map.put(list01.get(0),listMap);
+            list.add(map);
+        });
+        System.err.println("=>"+JsonMapper.mapString(list));
     }
 
 }
