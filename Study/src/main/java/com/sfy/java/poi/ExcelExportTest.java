@@ -106,11 +106,11 @@ public class ExcelExportTest {
     public static List<HashMap<String,String>> buildData(){
         List<HashMap<String,String>> list = Lists.newArrayList();
         HashMap<String,String> map = Maps.newHashMap();
-        map.put("groupRoomCode","123");
+        map.put("groupRoomCode", "other/other/123");
         HashMap<String,String> map1 = Maps.newHashMap();
-        map1.put("groupRoomCode","123");
+        map1.put("groupRoomCode", "other/other/123");
         HashMap<String,String> map2 = Maps.newHashMap();
-        map2.put("groupRoomCode","123");
+        map2.put("groupRoomCode", "other/other/123");
 
         HashMap<String,String> map3 = Maps.newHashMap();
         map3.put("groupRoomCode","45");

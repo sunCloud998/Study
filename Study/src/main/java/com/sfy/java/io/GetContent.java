@@ -22,7 +22,7 @@ import java.util.Set;
 public class GetContent {
 
     public static void main(String[] args) throws IOException {
-        InputStream is = GetContent.class.getClassLoader().getResourceAsStream("product/tuan.txt");
+        InputStream is = GetContent.class.getClassLoader().getResourceAsStream("other/product/tuan.txt");
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
         String line="";
@@ -35,7 +35,7 @@ public class GetContent {
         }
 
 
-        is = GetContent.class.getClassLoader().getResourceAsStream("product/tts.txt");
+        is = GetContent.class.getClassLoader().getResourceAsStream("other/product/tts.txt");
         isr = new InputStreamReader(is);
         br = new BufferedReader(isr);
         String ttsLine="";
@@ -61,7 +61,7 @@ public class GetContent {
         }
 
 
-        is = GetContent.class.getClassLoader().getResourceAsStream("test.txt");
+        is = GetContent.class.getClassLoader().getResourceAsStream("other/other/test.txt");
         isr = new InputStreamReader(is);
         br = new BufferedReader(isr);
         String kdLine="";
@@ -80,7 +80,7 @@ public class GetContent {
     @Test
     public void test(){
         try {
-            InputStream is = GetContent.class.getClassLoader().getResourceAsStream("test.txt");
+            InputStream is = GetContent.class.getClassLoader().getResourceAsStream("other/other/test.txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             List<String> list = Lists.newArrayList();
             String line;
@@ -90,7 +90,7 @@ public class GetContent {
                 String sql = "select id,trade_id,third_trade_id from pay_order"+id+" where user_order_id = '"+line+"' and stat = 3 UNION ALL ";
                 list.add(sql);
             }
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("123.sql")));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("other/other/123.sql")));
             for(String str : list){
                 writer.write(str);
                 writer.flush();
@@ -105,7 +105,7 @@ public class GetContent {
     @Test
     public void test01(){
         try {
-            InputStream is = GetContent.class.getClassLoader().getResourceAsStream("test.txt");
+            InputStream is = GetContent.class.getClassLoader().getResourceAsStream("other/other/test.txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             Map<String,List<String>> map = Maps.newHashMap();
             String line;
@@ -144,7 +144,7 @@ public class GetContent {
     @Test
     public void test01_sum(){
         try {
-            InputStream is = GetContent.class.getClassLoader().getResourceAsStream("test01.txt");
+            InputStream is = GetContent.class.getClassLoader().getResourceAsStream("other/other/test01.txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             List<Integer> list = Lists.newArrayList();
             String line;
@@ -167,7 +167,7 @@ public class GetContent {
     @Test
     public void test02(){
         try {
-            InputStream is = GetContent.class.getClassLoader().getResourceAsStream("2.txt");
+            InputStream is = GetContent.class.getClassLoader().getResourceAsStream("other/other/2.txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             List<String> key = Lists.newArrayList();
             List<String> value = Lists.newArrayList();
@@ -200,7 +200,7 @@ public class GetContent {
     @Test
     public void test03() {
         try {
-            InputStream is = GetContent.class.getClassLoader().getResourceAsStream("123");
+            InputStream is = GetContent.class.getClassLoader().getResourceAsStream("other/other/123");
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             List<String> list = Lists.newArrayList();
             String line;
