@@ -29,7 +29,7 @@ public class StringTest {
 
     @Test
     public void test02() {
-        String x = "' or '%'=='";
+        String x = "'  or  '%'=='";
         String target = dealEscapParameter(x);
         System.err.println(target);
     }
@@ -44,29 +44,9 @@ public class StringTest {
         for (int i = 0; i < stringLength; ++i) {
             char c = param.charAt(i);
             switch (c) {
-                case 0:
-                    buf.append('\\');
-                    buf.append('0');
-                    break;
-                case '\n': /* Must be escaped for logs */
-                    buf.append('\\');
-                    buf.append('n');
-                    break;
-                case '\r':
-                    buf.append('\\');
-                    buf.append('r');
-                    break;
-                case '\\':
-                    buf.append('\\');
-                    buf.append('\\');
-                    break;
                 case '\'':
-                    buf.append('\\');
                     buf.append('\'');
-                    break;
-                case '\032': /* This gives problems on Win32 */
-                    buf.append('\\');
-                    buf.append('Z');
+                    buf.append('\'');
                     break;
                 default:
                     buf.append(c);

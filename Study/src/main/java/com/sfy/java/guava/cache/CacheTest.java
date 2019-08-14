@@ -1,7 +1,7 @@
 package com.sfy.java.guava.cache;
 
 import com.google.common.cache.*;
-import com.sfy.object.Student;
+import com.sfy.exercise.object.Student;
 import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;

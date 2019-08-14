@@ -319,7 +319,7 @@ public class CheckIdCard {
 	 * @param args
 	 * @throws ParseException
 	 */
-	@SuppressWarnings("static-access")
+	@SuppressWarnings("staticproxy-access")
 	public static void main(String[] args) {
 		String IDCardNum = "13050319800115061X";
 

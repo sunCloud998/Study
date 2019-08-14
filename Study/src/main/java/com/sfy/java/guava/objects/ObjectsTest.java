@@ -2,7 +2,7 @@ package com.sfy.java.guava.objects;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import com.sfy.object.Student;
+import com.sfy.exercise.object.Student;
 import org.junit.Test;
 
 /**

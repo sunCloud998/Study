@@ -2,9 +2,8 @@ package com.sfy.java.guava.ordering;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
-import com.sfy.object.Student;
+import com.sfy.exercise.object.Student;
 import org.junit.Test;
-import org.springframework.core.annotation.Order;
 
 import javax.annotation.Nullable;
 import java.util.List;

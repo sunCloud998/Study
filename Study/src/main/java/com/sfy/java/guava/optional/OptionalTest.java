@@ -1,7 +1,7 @@
 package com.sfy.java.guava.optional;
 
 import com.google.common.base.Optional;
-import com.sfy.object.Student;
+import com.sfy.exercise.object.Student;
 import com.sfy.util.json.JsonMapper;
 import org.junit.Test;
 

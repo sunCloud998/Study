@@ -1,7 +1,7 @@
 package com.sfy.java.guava.eventbus;
 
 import com.google.common.eventbus.Subscribe;
-import com.sfy.object.Student;
+import com.sfy.exercise.object.Student;
 import com.sfy.util.json.JsonMapper;
 
 /**

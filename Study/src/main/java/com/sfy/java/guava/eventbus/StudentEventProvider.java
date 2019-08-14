@@ -2,7 +2,7 @@ package com.sfy.java.guava.eventbus;
 
 import com.google.common.eventbus.AsyncEventBus;
 import com.google.common.eventbus.EventBus;
-import com.sfy.object.Student;
+import com.sfy.exercise.object.Student;
 
 import java.util.concurrent.Executors;
 
