@@ -1,0 +1,20 @@
+ReadWriteLock读写锁
+读写锁ReadWriteLock接口的实现类ReentrantReadWriteLock,这个类提供两把锁，一把用于读操作和一把用于写操作。同时可以有多个线程执行读操作，但只有一个线程可以执行写操作。当一个线程正在执行一个写操作，不可能有任何线程执行读操作。
+
+声明一个读写锁对象
+private ReadWriteLock lock;
+
+实例化读写锁对象
+lock=new ReentrantReadWriteLock();
+
+使用读锁控制访问
+lock.readLock().lock();
+//临界资源...
+lock.readLock().unlock();
+
+使用写锁控制访问
+lock.writeLock().lock();
+//临界资源....
+lock.writeLock().unlock();
+
+ReentrantReadWriteLock类有两把锁，一把用于读操作，一把用于写操作。用于读操作的锁，是通过在 ReadWriteLock接口中声明的readLock()方法获取的。这个锁是实现Lock接口的一个对象，所以我们可以使用lock()， unlock() 和tryLock()方法。用于写操作的锁，是通过在ReadWriteLock接口中声明的writeLock()方法获取的。这个锁是实现Lock接 口的一个对象，所以我们可以使用lock()， unlock() 和tryLock()方法。

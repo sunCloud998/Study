@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sfy.example.dao.PoiInfoDao">
+
+    <resultMap id="PoiInfoMap" type="PoiInfo">
+        <id property="id" column="id" />
+        <result column="poi_name" property="poiName" />
+        <result column="poi_image" property="poiImage" />
+        <result column="poi_phone" property="poiPhone" />
+        <result column="city_id" property="cityId" />
+    </resultMap>
+
+    <sql id="PoiInfoColumn">
+        id,poi_name,poi_image,poi_phone,city_id
+    </sql>
+
+    <insert id="savePoiInfo" parameterType="PoiInfo">
+      INSERT INTO users (poi_name,poi_image,poi_phone,city_id) VALUES (#{poiName},#{poiImage},#{poiPhone},#{cityId})
+    </insert>
+
+    <select id="queryPoiInfo" resultMap="PoiInfoMap">
+        SELECT
+        <include refid="PoiInfoColumn" />
+        FROM poi_info
+    </select>
+
+    <select id="queryPoiInfoByIds" resultMap="PoiInfoMap">
+        SELECT
+        <include refid="PoiInfoColumn" />
+        FROM poi_info where id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <delete id="deletePoiInfoById" parameterType="int">
+        delete from poi_info where id=#{id}
+    </delete>
+</mapper>

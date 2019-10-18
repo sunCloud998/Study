@@ -1,0 +1,10 @@
+Exchanger类
+Exchanger 类允许在2个线程间定义同步点，当2个线程到达这个点，他们相互交换数据类型，使用第一个线程的数据类型变成第二个的，然后第二个线程的数据类型变成第一个的。
+Exchange类只能同步2个线程,只能在两个线程之间进行数据交换
+
+声明并创建一个Exchanger实例
+Exchanger<List<String>> exchanger = new Exchanger<List<String>>();
+
+交换数据：
+//List<String> buffer
+exchanger.exchange(buffer)
